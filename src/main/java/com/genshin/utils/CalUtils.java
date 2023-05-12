@@ -2,6 +2,7 @@ package com.genshin.utils;
 
 import com.genshin.obj.Panel;
 import com.genshin.obj.Rate;
+import com.genshin.reaction.Increase;
 
 /**
  * CalUtils
@@ -61,6 +62,17 @@ public class CalUtils {
      * @return 小数形式的角色暴击期望倍率
      */
     public static Double calDesire(Panel panel) {
-        return (100.0 + panel.getChr() * panel.getCd()) / 100.0;
+        return 1.0 + (panel.getChr() * panel.getCd()) / 10000.0;
+    }
+
+    /**
+     * 计算角色面板的元素精通倍率
+     *
+     * @param panel    角色面板对象
+     * @param increase 增幅反应面板对象
+     * @return 小数形式的角色元素精通倍率
+     */
+    public static Double calElm(Panel panel, Increase increase) {
+        return increase.getRestrain() * (Increase.elmRate(panel.getElm()) + increase.getCoefficient() + 1.0);
     }
 }
