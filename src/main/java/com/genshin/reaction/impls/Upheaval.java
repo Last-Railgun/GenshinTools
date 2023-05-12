@@ -1,4 +1,7 @@
-package com.genshin.reaction;
+package com.genshin.reaction.impls;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * Upheaval
@@ -8,5 +11,8 @@ package com.genshin.reaction;
  * @version 1.0
  * @date 2023-05-09 09:25
  */
+@Data
+@AllArgsConstructor
 public class Upheaval {
+
 }

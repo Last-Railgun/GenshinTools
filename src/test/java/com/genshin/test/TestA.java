@@ -1,23 +1,24 @@
 package com.genshin.test;
 
-import com.genshin.obj.Panel;
-import com.genshin.obj.Rate;
-import com.genshin.reaction.Increase;
+import com.genshin.attr.Panel;
+import com.genshin.attr.Rate;
+import com.genshin.reaction.impls.Increase;
 import com.genshin.utils.CalUtils;
+import com.genshin.utils.ReactionRate;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Test1
+ * TestA
  *
  * @author LastRailgun
  * @version 1.0
  * @date 2023-05-07 07:38
  */
 
-public class Test1 {
+public class TestA {
     @Test
     public void test1() {
         // 建立角色面板
@@ -41,10 +42,13 @@ public class Test1 {
         desireDmg = desireDmg * (1 + 0.466 + 0.6 + 0.18 + 0.35) * 0.5 * 1.025;
         System.out.println("期望伤害为:" + desireDmg);
         // 计算增幅反应,融化1.5倍率,无系数提升
-        Increase increase = new Increase();
-        increase.setRestrain(1.5);
-        Double finalDmg = desireDmg * CalUtils.calElm(panel, increase);
+        Double finalDmg = desireDmg * CalUtils.calElm(panel, new Increase(ReactionRate.UNRES, 0.0));
         // 最终伤害
         System.out.println("最终伤害为:" + finalDmg);
+    }
+
+    @Test
+    public void test2() {
+        System.out.println(ReactionRate.BLOOM.getRate());
     }
 }

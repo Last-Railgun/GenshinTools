@@ -1,4 +1,4 @@
-package com.genshin.reaction;
+package com.genshin.reaction.impls;
 
 /**
  * Sharpen

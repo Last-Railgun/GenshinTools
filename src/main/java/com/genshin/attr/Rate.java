@@ -1,9 +1,6 @@
-package com.genshin.obj;
+package com.genshin.attr;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * Rate
@@ -13,10 +10,7 @@ import lombok.ToString;
  * @version 1.0
  * @date 2023-05-08 08:46
  */
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
+@Data
 public class Rate {
     private Double rate;    // 角色技能倍率,如100%赋值100.0
     // 倍率对应面板属性

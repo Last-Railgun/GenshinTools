@@ -1,8 +1,8 @@
 package com.genshin.utils;
 
-import com.genshin.obj.Panel;
-import com.genshin.obj.Rate;
-import com.genshin.reaction.Increase;
+import com.genshin.attr.Panel;
+import com.genshin.attr.Rate;
+import com.genshin.reaction.ReaInterface;
 
 /**
  * CalUtils
@@ -66,13 +66,23 @@ public class CalUtils {
     }
 
     /**
+     * 计算角色的暴击伤害倍率
+     *
+     * @param panel 角色面板对象
+     * @return 小数形式的角色暴击期望倍率
+     */
+    public static Double calCriDmg(Panel panel) {
+        return 1.0 + panel.getCd() / 100.0;
+    }
+
+    /**
      * 计算角色面板的元素精通倍率
      *
-     * @param panel    角色面板对象
-     * @param increase 增幅反应面板对象
+     * @param panel        角色面板对象
+     * @param reaInterface 反应接口
      * @return 小数形式的角色元素精通倍率
      */
-    public static Double calElm(Panel panel, Increase increase) {
-        return increase.getRestrain() * (Increase.elmRate(panel.getElm()) + increase.getCoefficient() + 1.0);
+    public static Double calElm(Panel panel, ReaInterface reaInterface) {
+        return reaInterface.getReaRate().getRate() * (reaInterface.elmRate(panel.getElm()) + reaInterface.getCoefficient() + 1.0);
     }
 }

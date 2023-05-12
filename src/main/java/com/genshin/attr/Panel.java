@@ -1,9 +1,6 @@
-package com.genshin.obj;
+package com.genshin.attr;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +14,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2023-05-06 06:41
  */
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
+@Data
 public class Panel {
     private Double hea = 0.0; // 生命值
     private Double atk = 0.0; // 攻击力
