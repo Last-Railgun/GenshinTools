@@ -16,12 +16,13 @@ import java.util.Map;
  */
 @Data
 public class Panel {
-    private Double hea = 0.0; // 生命值
-    private Double atk = 0.0; // 攻击力
-    private Double def = 0.0; // 防御力
-    private Double elm = 0.0; // 元素精通
-    private Double chr = 0.0; // 暴击率
-    private Double cd = 0.0;  // 暴击伤害
+    private Integer level = 90; // 角色等级,默认90级
+    private Double hea = 0.0;   // 生命值
+    private Double atk = 0.0;   // 攻击力
+    private Double def = 0.0;   // 防御力
+    private Double elm = 0.0;   // 元素精通
+    private Double chr = 0.0;   // 暴击率
+    private Double cd = 0.0;    // 暴击伤害
 
     // 元素伤害和物伤字典,长度固定8
     // 键: 火 水 草 雷 风 冰 岩 物

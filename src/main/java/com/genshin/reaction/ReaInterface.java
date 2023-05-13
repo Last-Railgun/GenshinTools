@@ -1,5 +1,6 @@
 package com.genshin.reaction;
 
+import com.genshin.attr.Panel;
 import com.genshin.utils.ReactionRate;
 
 /**
@@ -13,10 +14,10 @@ public interface ReaInterface {
     /**
      * 用于计算每种类型反应的精通提升比例
      *
-     * @param elm 精通值
+     * @param panel 角色面板对象
      * @return 小数形式的精通提升
      */
-    Double elmRate(Double elm);
+    Double elmRate(Panel panel);
 
     /**
      * 用于获取反应提升系数

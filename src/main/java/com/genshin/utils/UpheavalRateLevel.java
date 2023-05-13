@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @ToString
 public class UpheavalRateLevel {
-    private static Map<Integer, Double> rateLevelMap = null;
+    public static Map<Integer, Double> rateLevelMap = null;
 
     static {
         UpheavalRateLevel.rateLevelMap = new HashMap<>(90);

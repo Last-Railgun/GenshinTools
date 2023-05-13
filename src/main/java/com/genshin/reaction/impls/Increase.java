@@ -1,5 +1,6 @@
 package com.genshin.reaction.impls;
 
+import com.genshin.attr.Panel;
 import com.genshin.reaction.ReaInterface;
 import com.genshin.utils.ReactionRate;
 import lombok.AllArgsConstructor;
@@ -26,10 +27,11 @@ public class Increase implements ReaInterface {
      * 计算方式为:
      * 元素精通提升=(2.78*精通)/(精通+1400)
      *
-     * @param elm 元素精通值
+     * @param panel 角色面板对象
      * @return 小数形式的元素精通提升倍率
      */
-    public Double elmRate(Double elm) {
-        return (2.78 * elm) / (1400 + elm);
+    @Override
+    public Double elmRate(Panel panel) {
+        return (2.78 * panel.getElm()) / (1400 + panel.getElm());
     }
 }

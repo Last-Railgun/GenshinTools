@@ -34,7 +34,7 @@ public class TestA {
         rate.setMode("atk");
         rate.setRate(230.0 + 392.0);
         // 计算基础伤害
-        Double basicDmg = CalUtils.calBasicDmg(panel, rate);
+        Double basicDmg = CalUtils.calBasic(panel, rate);
         System.out.println("基础伤害为:" + basicDmg);
         // 根据基础伤害计算期望伤害
         Double desireDmg = CalUtils.calDesire(panel) * basicDmg;
