@@ -1,9 +1,12 @@
 package com.genshin.utils;
 
+import com.genshin.attr.Addition;
 import com.genshin.attr.Panel;
 import com.genshin.attr.Rate;
+import com.genshin.attr.Resistance;
 import com.genshin.reaction.ReaInterface;
 import com.genshin.reaction.impls.Sharpen;
+import com.genshin.reaction.impls.Upheaval;
 
 /**
  * CalUtils
@@ -67,10 +70,25 @@ public class CalUtils {
      * @param rates   角色倍率数组
      * @return 激化伤害
      */
-    public static Double calSharpen(Panel panel, Sharpen sharpen, Rate... rates) {
+    public static Double calSharpenDmg(Panel panel, Sharpen sharpen, Rate... rates) {
         Double basicDmg = CalUtils.calBasic(panel, rates);
         Double levelRate = UpheavalRateLevel.rateLevelMap.get(panel.getLevel());
-        return basicDmg + levelRate * sharpen.getReaRate().getRate() * calElm(panel, sharpen);
+        return basicDmg + levelRate * sharpen.getReaRate().getRate() * calElmRate(panel, sharpen);
+    }
+
+    /**
+     * 计算角色剧变反应伤害
+     * 计算方式: 等级系数 * 抗性倍率 * 精通倍率
+     *
+     * @param panel      角色面板对象
+     * @param upheaval   剧变反应对象
+     * @param resistance 抗性区对象
+     * @return
+     */
+    public static Double calUpheavalDmg(Panel panel, Upheaval upheaval, Resistance resistance) {
+        Double levelRate = UpheavalRateLevel.rateLevelMap.get(panel.getLevel());
+        Double resRate = CalUtils.calResistance(resistance);
+        return levelRate * resRate * calElmRate(panel, upheaval);
     }
 
     /**
@@ -104,7 +122,37 @@ public class CalUtils {
      * @param reaInterface 反应接口
      * @return 小数形式的角色元素精通倍率
      */
-    public static Double calElm(Panel panel, ReaInterface reaInterface) {
+    public static Double calElmRate(Panel panel, ReaInterface reaInterface) {
         return reaInterface.getReaRate().getRate() * (reaInterface.elmRate(panel) + reaInterface.getCoefficient() + 1.0);
+    }
+
+    /**
+     * 计算角色伤害的增伤区倍率
+     *
+     * @param panel    角色面板对象
+     * @param addition 增伤区对象
+     * @param type     角色的元素类型
+     * @return 小数形式的增伤区倍率
+     */
+    public static Double calAddition(Panel panel, Addition addition, String type) {
+        Double attrRate = panel.getAtts().get(type);
+        return 1.0 + (attrRate + addition.getArtifact() + addition.getWeapon() + addition.getTeammate()) / 100.0;
+    }
+
+    /**
+     * 计算抗性区减伤倍率
+     *
+     * @param resistance 抗性对象
+     * @return 小数形式的抗性减伤倍率
+     */
+    public static Double calResistance(Resistance resistance) {
+        Double finalRes = resistance.getMonsterRes() - resistance.getReduce();
+        if (finalRes >= 0 && finalRes <= 75) {
+            return 1.0 - finalRes / 100.0;
+        } else if (finalRes < 0) {
+            return 1.0 + 0.5 * finalRes / 100.0;
+        } else {
+            return 1.0 / (1 + 4 * finalRes);
+        }
     }
 }

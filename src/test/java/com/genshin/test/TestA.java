@@ -42,13 +42,14 @@ public class TestA {
         desireDmg = desireDmg * (1 + 0.466 + 0.6 + 0.18 + 0.35) * 0.5 * 1.025;
         System.out.println("期望伤害为:" + desireDmg);
         // 计算增幅反应,融化1.5倍率,无系数提升
-        Double finalDmg = desireDmg * CalUtils.calElm(panel, new Increase(ReactionRate.UNRES, 0.0));
+        Double finalDmg = desireDmg * CalUtils.calElmRate(panel, new Increase(ReactionRate.UNRES, 0.0));
         // 最终伤害
         System.out.println("最终伤害为:" + finalDmg);
     }
 
     @Test
     public void test2() {
-        System.out.println(ReactionRate.BLOOM.getRate());
+
+
     }
 }
